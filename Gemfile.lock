@@ -1,0 +1,17 @@
+PATH
+  remote: .
+  specs:
+    hg-finance (1.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hg-finance!
+
+BUNDLED WITH
+   1.15.1
