@@ -31,7 +31,7 @@ require 'hg/finance'
 
 HG::Finance.setup do |config|
   # You can generate your key on hgbrasil.com/finance
-  # Key is required for search by name, geolocation or IP.
+  # Key is required for get taxes data.
   config.api_key = 'my-key'
 
   # Set locale for response, default is english, available: pt-br, en
