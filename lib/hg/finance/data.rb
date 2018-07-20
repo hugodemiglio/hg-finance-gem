@@ -1,3 +1,4 @@
+require 'hg/finance/crypto_currency'
 require 'hg/finance/currency'
 require 'hg/finance/taxes'
 require 'hg/finance/stock'
@@ -8,7 +9,7 @@ module HG
     class Data
 
       attr_accessor :request, :requested_at, :key_status
-      attr_accessor :taxes, :currencies, :stocks
+      attr_accessor :taxes, :currencies, :cryptocurrencies, :stocks
 
       def initialize params, host_name, use_ssl = true
         query_params = params.map{|k,v| "#{k.to_s}=#{v.to_s}"}.join('&')
@@ -28,6 +29,11 @@ module HG
           results['currencies'].each do |iso, currency|
             next if iso == 'source'
             @currencies[iso] = Currency.new(to_currency(currency, iso, results['currencies']['source']))
+          end
+
+          @cryptocurrencies = {}
+          results['bitcoin'].each do |exchange, c|
+            @cryptocurrencies[exchange.to_sym] = { "btc#{c['format'][0]}".downcase.to_sym => CryptoCurrency.new(to_cryptocurrency(c, 'Bitcoin', 'BTC')) }
           end
 
           @stocks = {}
@@ -53,6 +59,19 @@ module HG
           source: source,
           iso_code: iso_code,
           name: r['name'],
+          buy: r['buy'],
+          sell: r['sell'],
+          variation: r['variation']
+        }
+      end
+
+      def to_cryptocurrency r, name = 'Bitcoin', iso_code = 'BTC'
+        {
+          to_currency: r['format'][0],
+          exchange: r['name'],
+          name: name,
+          iso_code: iso_code,
+          last: r['last'],
           buy: r['buy'],
           sell: r['sell'],
           variation: r['variation']

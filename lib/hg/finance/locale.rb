@@ -11,6 +11,7 @@ module HG
           buy: :buy,
           sell: :sell,
           variation: :variation,
+          last: :last,
           daily_factor: 'daily factor'
         },
         :'pt-br' => {
@@ -20,6 +21,7 @@ module HG
           buy: :compra,
           sell: :venda,
           variation: 'variação',
+          last: 'último',
           daily_factor: 'fator diário'
         }
       }

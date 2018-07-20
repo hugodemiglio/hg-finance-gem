@@ -2,7 +2,7 @@
 
 Welcome to official HG Finance's Ruby Gem!
 
-Now you can simple get Brazilian finance data (currencies exchange, government taxes and stocks markets) from HG Finance API directly on your Ruby Application!
+Now you can simple get finance data (currencies exchange, crypto currencies exchanges, brazilian government taxes and stocks markets) from HG Finance API directly on your Ruby Application!
 
 ## Installation
 
@@ -79,6 +79,27 @@ finance.currencies.each do |currency|
   currency.buy # => 3.2849
   currency.sell # => 3.2843
   currency.variation # => -0.07
+end
+
+finance.cryptocurrencies
+# Will return an hash with HG::Finance::CryptoCurrency object, with currencies exchanges as symbols keys
+# {:blockchain_info=>{:btcusd=>Blockchain.info (BTC to USD) - Last: USD 7446.0000905 - Buy: USD 7446.0000905 - Sell
+
+finance.cryptocurrencies[:omnitrade][:btcbrl]
+# Will return a HG::Finance::CryptoCurrency object
+# => OmniTrade (BTC to BRL) - Last: BRL 28800.0 - Buy: BRL 28500.01 - Sell: BRL 29200.0 - Variation: 0.699
+
+finance.cryptocurrencies.each do |exchange, markets|
+  markets.each do |data, market|
+    market.exchange # => "OmniTrade"
+    market.name # => "Bitcoin"
+    market.iso_code # => "BTC"
+    market.to_currency # => "BRL"
+    market.last # => 28800.0
+    market.buy # => 28500.01
+    market.sell # => 29200.0
+    market.variation # => 0.699
+  end
 end
 
 finance.stocks
