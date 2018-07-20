@@ -2,7 +2,44 @@
 
 Welcome to official HG Finance's Ruby Gem!
 
-Now you can simple get finance data (currencies exchange, crypto currencies exchanges, brazilian government taxes and stocks markets) from HG Finance API directly on your Ruby Application!
+Now you can simple get finance data (currencies exchange, cryptocurrencies exchanges, brazilian government taxes and stocks markets) from HG Finance API directly on your Ruby Application!
+
+## Available data
+
+### Cryptocurrencies exchange
+
+- Blockchain.info
+    - BTC to USD Dollar
+- Coinbase
+    - BTC to USD Dollar
+- BitStamp
+    - BTC to USD Dollar
+- FoxBit
+    - BTC to BRL Brazilian Real
+- Mercado Bitcoin
+    - BTC to BRL Brazilian Real
+- OmniTrade
+    - BTC to BRL Brazilian Real  
+
+### Stock markets
+
+- BM&F BOVESPA Sao Paulo, Brazil
+- NASDAQ New York City, United States
+- CAC 40 Paris, French
+- Nikkei 225 Tokyo, Japan
+
+### Currencies exchange
+
+- USD Dollar to BRL Brazilian Real
+- EUR Euro to BRL Brazilian Real
+- GBP Pound Sterling to BRL Brazilian Real
+- ARS Argentine Peso to BRL Brazilian Real
+- BTC Bitcoin (blockchain.info) to BRL Brazilian Real
+
+### Taxes
+
+- Brazilian CDI
+- Brazilian Selic
 
 ## Installation
 
@@ -31,7 +68,7 @@ require 'hg/finance'
 
 HG::Finance.setup do |config|
   # You can generate your key on hgbrasil.com/finance
-  # Key is required for get taxes data.
+  # Key is required for get some data.
   config.api_key = 'my-key'
 
   # Set locale for response, default is english, available: pt-br, en
